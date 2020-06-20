@@ -1,5 +1,5 @@
 {
-  "name": "orgbital-daemon-poc",
+  "name": "orgbital-daemon",
   "version": "0.1.0",
   "main": "app.ts",
   "repository": "https://github.com/Orgbital/orgbital-daemon-poc",
