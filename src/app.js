@@ -13,8 +13,6 @@ const WebSocket = require("ws");
 const axios = require('axios');
 const sharedb = require("sharedb/lib/client")
 
-const ws = new WebSocket("ws://localhost:8080");
-const conn = new sharedb.Connection(ws);
 
 var net = require('net'),
     fs = require('fs'),
@@ -71,6 +69,8 @@ function createServer(socket){
                          console.log(error);
                      });            }
         });
+          const ws = new WebSocket("ws://localhost:8080/ws");
+          const conn = new sharedb.Connection(ws);
     })
                     .listen(socket)
                     .on('connection', function(socket){
