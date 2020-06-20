@@ -1,13 +1,3 @@
-// import sharedb from "sharedb/lib/client";
-// const WebSocket = require("ws");
-
-// const ws = new WebSocket("ws://orgbital-server.azurewebsites.net");
-// const conn = new sharedb.Connection(ws);
-
-// const doc = conn.get('foo', 'bar');
-// doc.fetch(function(err: any){
-//     console.log(err);
-// });
 
 /*
 **
@@ -19,16 +9,12 @@
 **
 */
 
-
 const WebSocket = require("ws");
 const axios = require('axios');
 const sharedb = require("sharedb/lib/client")
 
 const ws = new WebSocket("ws://localhost:8080");
 const conn = new sharedb.Connection(ws);
-
-const doc = conn.get('foo', 'bar');
-
 
 var net = require('net'),
     fs = require('fs'),
