@@ -67,6 +67,28 @@ function createServer (socket) {
           .catch(function (error) {
             console.log(error);
           });
+      } else if (msg.startsWith("fsp") && msg.endsWith("fsp")) { // it's an op
+        const opStr = msg.substring(
+          "fsp".length,
+          msg.length - "fsp".length);
+        console.log(opStr);
+        let op;
+        try {
+          op = JSON.parse(opStr);
+          console.log(op);
+        } catch (e) {
+          console.error(e);
+        }
+        if (op.o[0].i) { // it's an insert op
+          doc.submitOp(op, console.error);
+        } else { // it's a delete op
+          // TODO: We need to retrieve the region to delete, as I can't find it
+          // in Emacs :(
+          // doc.data;
+          const contentToDelete = 'TODO';
+          op.o[0].d = contentToDelete;
+          doc.submitOp(op, console.error);
+        }
       }
     });
   })
