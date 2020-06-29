@@ -6,6 +6,8 @@ const sharedb = require("sharedb/lib/client")
 const collectionName = 'swampert';
 
 const mode = 'server';
+let doc = undefined;
+
 var net = require('net'),
   fs = require('fs'),
   connections = {},
@@ -53,7 +55,7 @@ function createServer (socket) {
           const conn = new sharedb.Connection(ws);
 
           // fetch doc, and display its contents
-          const doc = conn.get(collectionName, documentId);
+          doc = conn.get(collectionName, documentId);
           doc.fetch(err => {
             if (err) {
               throw err;
