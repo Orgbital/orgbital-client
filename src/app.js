@@ -22,6 +22,15 @@ const SOCKETFILE = '/tmp/unix.sock';
 console.info('Loading interprocess communications test');
 console.info('  Mode: %s \n  Socket: %s \n  Process: %s', mode, SOCKETFILE, process.pid);
 
+function jsonToArray(json) {
+  const str = JSON.stringify(json, null, 0);
+  let ret = new Uint8Array(str.length);
+  for (let i = 0; i < str.length; i++) {
+    ret[i] = str.charCodeAt(i);
+  }
+  return ret
+}
+
 function createServer (socket) {
   console.log('Creating server.');
   var server = net.createServer(function (stream) {
@@ -62,6 +71,19 @@ function createServer (socket) {
             } else {
               console.log(doc.data);
             }
+          })
+
+          doc.on('op', (op, source) => {
+            console.log('op');
+            console.log(op);
+            // if (!source) { // op was received from server
+              // TODO: send
+              const arr = jsonToArray(op);
+              console.log(arr);
+              stream.write(arr);
+            // } else {
+            //   console.log('!source');
+            // }
           })
         })
           .catch(function (error) {
