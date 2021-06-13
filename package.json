@@ -8,7 +8,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "sharedb": "^1.3.4",
-    "ws": "^7.3.0"
+    "ws": "^7.4.6"
   },
   "scripts": {
     "start": "env MODE=server nodemon src/app.js"
